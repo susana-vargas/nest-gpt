@@ -1,4 +1,4 @@
-export const orthographyCheckUseCase = () => {
+export const orthographyCheckUseCase = async () => {
   return {
     hola: 'mundo desde orthographyCheckUseCase',
   };
