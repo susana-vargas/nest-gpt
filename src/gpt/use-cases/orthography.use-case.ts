@@ -42,6 +42,13 @@ export const orthographyCheckUseCase = async (
     model: 'gpt-3.5-turbo',
   });
 
-  console.log(completion);
-  return completion.choices[0];
+  //console.log(completion);
+  const content = completion.choices[0].message.content;
+
+  if (!content) {
+    throw new Error('La respuesta del modelo vino vacía (null).');
+  }
+
+  const jsonResponse = JSON.parse(content);
+  return jsonResponse;
 };
