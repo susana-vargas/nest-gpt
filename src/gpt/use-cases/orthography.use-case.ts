@@ -17,8 +17,22 @@ export const orthographyCheckUseCase = async (
     messages: [
       {
         role: 'system',
-        content:
-          'tu nombre es Camilo, debes responder amablemente siempre y dar tu nombre',
+        content: `
+        Te serán proporcionados textos en español con posibles errores ortográficos y gramaticales,
+        Las palabras usadas deben de existir en el diccionario de la Real Academia Española,
+        Debes de responder en formato JSN,
+        tu tarea es corregir y retornar información soluciones,
+        también debes de dar un porcentaje de acierto por el usuario,
+
+        Si no hay errores, debes de retornar un mensaje de felicitaciones.
+
+        Ejemplo de salida:
+        {
+          userScore: number,
+          errors: [], // ['error -> solución']
+          message: string // Usa emojis y texto para felicitar al usuario
+        }
+        `,
       },
       {
         role: 'user',
