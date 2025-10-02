@@ -12,6 +12,7 @@ export const prosConsDicusserUseCase = async (
     messages: [
       {
         role: 'system',
+        // de acuerdo a la respesta de la tarea que se mostro en el curso no se agrego el Ejemplo de salida
         content: `
         Se te dará una pregunta y tu tarea es dar una respuesta con pros y contras,
         la respuesta debe de ser en formato markdown,
