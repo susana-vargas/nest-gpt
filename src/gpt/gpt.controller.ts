@@ -4,6 +4,7 @@ import type { Response } from 'express';
 import { GptService } from './gpt.service';
 import { OrthographyDto } from './dtos';
 import { ProsConsDiscusserDto } from './dtos/pros-cons-discusser.dto';
+import { TranslateDto } from './dtos/translate.dto';
 
 @Controller('gpt')
 export class GptController {
@@ -36,5 +37,10 @@ export class GptController {
       res.write(piece);
     }
     res.end();
+  }
+
+  @Post('translate')
+  translate(@Body() translateDto: TranslateDto) {
+    return this.gptService.translate(translateDto);
   }
 }
