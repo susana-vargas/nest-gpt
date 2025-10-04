@@ -9,8 +9,7 @@ export const translateUseCase = async (
   openai: OpenAI,
   { prompt, lang }: Options,
 ) => {
-  return await openai.chat.completions.create({
-    stream: true, // para que la respuesta sea en stream
+  const response = await openai.chat.completions.create({
     messages: [
       {
         role: 'system',
@@ -19,4 +18,6 @@ export const translateUseCase = async (
     ],
     model: 'gpt-3.5-turbo',
   });
+
+  return response.choices[0].message.content;
 };

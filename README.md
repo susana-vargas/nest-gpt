@@ -9,3 +9,6 @@ Este commit es sobre la tarea que se dejo en esta parte del curso, este es el do
 [Tarea - ProsCons](https://gist.github.com/Klerith/e52d9247594c2e50fd08cc6ec14c975c)
 Comentario:
 como comentaro extra esto se hizo solo con ejecución sin prueba ya que para este momento aun no se tubo una key de OpenAI de créditos gratuitos
+
+Este commit es sobre la solucion de la tarea realizada:
+[Backend - Tarea](https://gist.github.com/Klerith/1e23c7cb5c95d0bbc91353ccacaddeb1)
