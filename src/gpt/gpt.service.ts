@@ -5,9 +5,10 @@ import OpenAI from 'openai';
 import {
   orthographyCheckUseCase,
   prosConsDicusserStreamUseCase,
+  textToAudioUseCase,
   translateUseCase,
 } from './use-cases';
-import { OrthographyDto } from './dtos';
+import { OrthographyDto, TextToAudioDto } from './dtos';
 import { prosConsDicusserUseCase } from './use-cases';
 import { ProsConsDiscusserDto } from './dtos/pros-cons-discusser.dto';
 import { TranslateDto } from './dtos/translate.dto';
@@ -35,5 +36,9 @@ export class GptService {
   async translate({ prompt, lang }: TranslateDto) {
     console.log('translate called with:', { prompt, lang });
     return await translateUseCase(this.openai, { prompt, lang });
+  }
+
+  async textToAudio({ prompt, voice }: TextToAudioDto) {
+    return await textToAudioUseCase(this.openai, { prompt, voice });
   }
 }
