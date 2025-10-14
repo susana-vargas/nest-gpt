@@ -113,6 +113,6 @@ export class GptController {
   ) {
     console.log({ file });
 
-    return 'done';
+    return this.gptService.audioToText(file);
   }
 }
