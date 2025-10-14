@@ -82,7 +82,7 @@ export class GptController {
     res.sendFile(filePath);
   }
 
-  @Post('audio-to-text')
+  @Post('audio-to-text') //subida de audio
   //es como un "filtro" que puede ejecutar lógica antes, después o incluso reemplazar la respuesta de un método.
   @UseInterceptors(
     FileInterceptor('file', {
@@ -97,6 +97,7 @@ export class GptController {
     }),
   )
   async audioToText(
+    //validación del audio
     @UploadedFile(
       new ParseFilePipe({
         validators: [
@@ -104,7 +105,7 @@ export class GptController {
             maxSize: 1000 * 1024 * 5,
             message: 'file is bigger than 5 mb',
           }),
-          new FileTypeValidator({ fileType: 'audio/*' }),
+          //new FileTypeValidator({ fileType: 'audio/*' }), // se omitio poara pruebas
         ],
       }),
     )
