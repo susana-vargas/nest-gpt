@@ -27,12 +27,17 @@ export const imageGenerationUseCase = async (
     });
     //TODO. guardar la  imagen en FS.
     if (response?.data?.[0].url) {
-      const url = await downloadImageAsPng(response.data[0].url);
-      return url;
+      const fileName = await downloadImageAsPng(response.data[0].url);
+      const url = `${process.env.SERVER_URL}gpt/image-generation/${fileName}`;
+      return {
+        url: url,
+        openAIUrl: response?.data?.[0].url,
+        revised_prompt: response?.data?.[0].revised_prompt,
+      };
     }
 
     return {
-      url: response?.data?.[0].url, //TODO: http://localhost:3000/gpt/image-generation/09_08_16.png
+      url: response?.data?.[0].url,
       openAIUrl: response?.data?.[0].url,
       revised_prompt: response?.data?.[0].revised_prompt,
     };
@@ -50,12 +55,11 @@ export const imageGenerationUseCase = async (
     response_format: 'url',
   });
   if (response?.data?.[0].url) {
-    const localImagePath = await downloadImageAsPng(response.data[0].url);
-    const fileName = path.basename(localImagePath);
-    const publicUrl = `localhost:3000/${fileName}`;
+    const fileName = path.basename(response?.data?.[0].url);
+    const url = `localhost:3000/${fileName}`;
 
     return {
-      url: publicUrl, //TODO: http://localhost:3000/gpt/image-generation/09_08_16.png
+      url: url,
       openAIUrl: response?.data?.[0].url,
       revised_prompt: response?.data?.[0].revised_prompt,
     };
