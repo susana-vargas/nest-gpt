@@ -8,6 +8,7 @@ import OpenAI from 'openai';
 import {
   audioToTextUseCase,
   imageGenerationUseCase,
+  imageVariationUseCase,
   orthographyCheckUseCase,
   prosConsDicusserStreamUseCase,
   textToAudioUseCase,
@@ -16,6 +17,7 @@ import {
 import {
   AudioToTextDto,
   ImageGenerationDto,
+  ImageVariationDto,
   OrthographyDto,
   TextToAudioDto,
 } from './dtos';
@@ -82,5 +84,9 @@ export class GptService {
     if (!exist) throw new NotFoundException(`File ${fileName} not found`);
 
     return filePath;
+  }
+
+  async generateImageVariation({ baseImage }: ImageVariationDto) {
+    return await imageVariationUseCase(this.openai, { baseImage });
   }
 }
