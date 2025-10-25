@@ -17,7 +17,8 @@ export const translateUseCase = async (
       },
     ],
     model: 'gpt-3.5-turbo',
+    temperature: 0.2,
   });
 
-  return response.choices[0].message.content;
+  return { message: response.choices[0].message.content };
 };
